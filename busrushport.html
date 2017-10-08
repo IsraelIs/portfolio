@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script language= "javascript" type= "text/javascript">
+			function btntest_onclick ()
+	       {
+		         window.location.href ="bus%20rush.html";
+	       }
+ 			var myAudio= new Audio ("the walking dead opening theme song.wav");
+      myAudio.volume = 0.2;
+			myAudio.play();
+	</script>
+    <title>Isaac Israel's Portfolio</title>
+  </head>
+  <body onLoad="startGame()">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">List of projects</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="attendancetrackportfolio.html">Attendance Tracker</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="busrushport.html">Bus Rush</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sqlport.html">SQL database</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+
+    </span>
+  </div>
+</nav>
+  <h3 style = "text-align:center">Isaac Israel's portfolio</h3>
+<center>
+  <div class="card text-white bg-dark mb-3" style="width: 20rem; text-align:center">
+
+    <div class = "card-header">
+      <h4>Bus Rush</h4>
+    </div>
+      <img class="card-img-top" src="images/busrushSS.png" alt="Card image cap">
+    <div class ="card-body">
+       <p class="card-text">Bus Rush was created at Intel Ultimate Engineering Experience in the summer of 2013</p>
+    </div>
+        <ul class = "list-group list-group-flush bg-dark text-dark">
+          <li class = "list-group-item">
+            Was made in 3 days using Javascript
+          </li>
+          <li class="list-group-item">
+            Game where you pick up passengers before time runs out.
+          </li>
+          <li class = "list-group-item">
+            Click here to play the game. <button class="btn btn-outline-primary btn-info" id="btntest" role= "button" value= "Start Game"
+		onclick="return btntest_onclick()" > Start Game</button>
+          </li>
+    </ul>
+  </div>
+</center>
+
+  </body>
+</html>

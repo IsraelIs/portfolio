@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<title> BushRush level 2 </title>
+</head>
+<body onLoad="startGame()">
+	<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">List of projects</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)
+          </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="attendancetrackportfolio.html">Attendance Tracker</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="busrushport.html">Bus Rush</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">SQL database</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+
+    </span>
+  </div>
+</nav>
+<div id="myImage"> </div>
+<canvas id="myCanvas" height=500 width=600 style="border: 1px dashed #000000"></canvas>
+<script type= "text/javascript">
+			var theCanvas = document.getElementById("myCanvas");
+			var img = document.createElement('img');
+			img.src = "images/gameover.gif";
+			document.addEventListener('keydown',keydown);
+			var theContext = theCanvas.getContext ("2d");
+			var x = 50;
+			var y = 100;
+			var scaleX= 42;
+			var scaleY= 42;
+			var FPS= 1000/8;
+			var countingdown=false;
+			var score=0
+			var timer=300
+			var myImage= new Image ();
+			myImage.src = "images/bus.jpg";
+
+			var myAudio= new Audio ();
+			myAudio.src = "sound/gameover2.wav";
+
+			var laugh = new Audio ();
+			laugh.src = "sound/laugh.wav";
+
+			var gameover = new Image ();
+			gameover.src = "images/game over.png";
+
+			var anotherImage= new Image ();
+			anotherImage.src= "images/side bus.png";
+			//give some info on what you're doing
+
+			var passengers= new Image ();
+			passengers.src= "images/passengers.png";
+
+			var gass = new Image();
+			gass.src="images/gas2.png";
+
+      var myImage2=new Image();
+			myImage2.src="images/Bus2.jpg";
+
+			var backgroundNum = 1;
+			var number_of_backgrounds = 4;
+			var bg=new Array();
+			bg[1]=myImage2;
+			var size = 20;
+			var pickups = new Array();
+			pickups.push([20,35]);
+
+			var loop = setInterval (function(){
+			//clearect(startX, startY, Xsize, Ysize)
+			if(countingdown){
+			timer=timer-1;
+			}
+
+				theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
+				//drawImage(imageVariable,Xcoord,Ycoord, Xscale, Yscale)
+				theContext.drawImage(bg[backgroundNum],0,0, scaleX, scaleY);
+				theContext.drawImage(anotherImage,x,y,20,20);
+
+				//draw random images
+				for(var  i = 0; i < pickups.length; i++){
+					//theContext.drawImage(pickup, pickups[i][0], pickups[i][1]);
+					theContext.drawImage(passengers,pickups[i][0], pickups[i][1], size, size);
+				}
+
+				scaleX = 500;
+				scaleY = 500;
+
+				//xml version="1.0" standalone="no"
+
+
+
+				//scaleX++;
+				//scaleY++;
+
+				//check for collision vs random images
+				var w = 30;
+				var h = 20;
+				for(var  i = 0; i < pickups.length; i++){
+					var px = pickups[i][0];
+					var py = pickups[i][1];
+					if(x < px + size && x + w > px && y < py + size && y + h > py){
+						//hit the object
+						pickups.splice(i,1);
+						score+=10;
+						if(score % 50 == 0){
+						clearInterval(loop);
+						alert("next level");
+						window.location.href="Level3.html";
+
+
+						}
+					}
+				}
+				/*if(timer==300){
+				                       theContext.drawImage(gass,0*413,0,413,391,475,0,413,391);;}
+                                else if(timer<300){
+                                        theContext.drawImage(gass,1*413,0,413,391,475,0,413,391);
+                                }else if(timer<275){
+                                        theContext.drawImage(gass,2*413,0,413,391,475,0,413,391);
+                                }else if(timer<250){
+                                        theContext.drawImage(gass,3*413,0,413,391,475,0,413,391);
+                                }else if(timer<225){
+                                        theContext.drawImage(gass,4*413,0,413,391,475,0,413,391);
+                                }else if(timer<200){
+                                        theContext.drawImage(gass,5*413,0,413,391,475,0,413,391);
+								}else if(timer<175){
+                                        theContext.drawImage(gass,6*413,0,413,391,475,0,413,391);
+                                }else if(timer<150){
+                                        theContext.drawImage(gass,7*413,0,413,391,475,0,413,391);
+                                }else if(timer<125){
+                                        theContext.drawImage(gass,8*413,0,413,391,475,0,413,391);
+                                }else if(timer<100){
+                                        theContext.drawImage(gass,9*413,0,413,391,475,0,413,391);
+								}else if(timer<75){
+                                        theContext.drawImage(gass,10*413,0,413,391,475,0,413,391);
+                                }else if(timer<50){
+                                        theContext.drawImage(gass,11*413,0,413,391,475,0,413,391);
+								}else*/
+				if(timer==0){
+                      clearInterval(loop);
+                      //theContext.drawImage(gameover,0,0,500,500);
+											myCanvas.style.visibility='hidden';
+											document.getElementById('myImage').appendChild(img);
+											myAudio.play();
+											alert("Game Over!");
+											laugh.play();
+                    }
+				else theContext.drawImage(gass,Math.floor((300-timer)/25)*100,0,100,340,500,0,100,340);
+
+
+				if(x < 0 || y < 0 || y + h > theCanvas.height || x + w > theCanvas.width-100){
+					//game  over
+					clearInterval(loop);
+					//theContext.drawImage(gameover,0,0,500,500);
+					myCanvas.style.visibility='hidden';
+					document.getElementById('myImage').appendChild(img);
+					myAudio.play();
+					alert("Game Over!");
+					laugh.play();
+					}
+
+
+				//Increament based onn which if the global key values is true
+				if (leftKey == true) x -= speed;
+				if (rightKey == true) x += speed;
+				if (upKey == true) y -= speed;
+				if (downKey == true) y += speed;
+				if (leftKey == true || rightKey == true || upKey == true || downKey == true) countingdown = true;
+
+				//new random image
+				if(pickups.length < 1){
+					var newx = Math.floor(Math.random()*(500 - size));
+					var newy = Math.floor(Math.random()*(theCanvas.height - size));
+					pickups.push([newx,newy]);
+					//alert(newx+","+newy+","+pickups[0]+":"+pickups[0][0]+","+pickups[0][1]);
+				}
+				theContext.font="bold 36px Arial";
+				theContext.fillText(score,500,490);
+			},1000/20);
+
+			var speed = 10;
+			//global key values
+			var leftKey= false;
+			var upKey = false;
+			var rightKey = false;
+			var downKey = false;
+
+			//change the key values based on the buttons pressed!
+			function keydown(e){
+			coountingdown=true;
+				switch(e.keyCode){
+					case 37:
+						//left
+						//x -= speed;
+						//x-- ;
+						leftKey= true;
+						upKey = false;
+						rightKey = false;
+						downKey = false;
+						break;
+					case 38:
+						//up
+						//y -= speed;
+						//y--;'
+						leftKey= false;
+						upKey = true;
+						rightKey = false;
+						downKey = false;
+						break;
+					case 39:
+						//right
+						//x += speed;
+						//x++;
+						leftKey= false;
+						upKey = false;
+						rightKey = true;
+						downKey = false;
+						break;
+					case 40:
+						//y += speed;
+						//y++;
+						leftKey= false;
+						upKey = false;
+						rightKey = false;
+						downKey = true;
+						break;
+				}
+
+
+			}
+
+
+			/* dfdgg
+			*/
+			myImage.onload=function(){
+			theContext.drawImage(myImage,100,100,scaleX,scaleY);
+			}
+		</script>
+		<!--
+		<audio controls>
+		<source src="horse.ogg" type="audio/ogg">
+		<source src="horse.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+		</audio>
+		-->
+
+		</body>
+		</html>
